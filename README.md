@@ -71,7 +71,7 @@ Kann sein das fehlschlägt wegen <20V nach den Schützen
 
 <!-- Technische Sachen zum vorladewiderstand und den schützen bezug zu oben -->
 
-Zu guter letzt muss via eigendiagnose der Crash wert im HV Sytem zurückgesetzt werden. Dazu eigendiagnose HV Hybrid managment 00C8 (XXX) (oder so?). USW
+Zu guter letzt muss via eigendiagnose der Crash wert im HV Sytem zurückgesetzt werden. Dazu eigendiagnose HV Hybrid managment 008C Batteriemanagment/ Hybrid Battery Energy Managment J840. USW
 Code 20103
 
 
