@@ -1,140 +1,139 @@
 # Audi E-Tron GT HV Reset
 
-In diesem Repository habe ich alle Schritte zusammengefasst, die nötig waren, um meinen Audi E-Tron GT nach einem Unfall wieder vollständig freizuschalten und in Betrieb zu nehmen. Von der ersten Fehlerdiagnose über die Arbeit mit ODIS, der Rückstellung der Airbag- und Hochvoltsysteme, bis hin zur finalen Freigabe durch das Fahrzeug.
+In diesem Repository sind die Arbeitsschritte dokumentiert, die erforderlich waren, um den betroffenen Audi E-Tron GT nach einem Unfall wieder vollständig freizuschalten und in Betrieb zu nehmen. Der Bogen spannt sich von der initialen Fehlerdiagnose über die Arbeit mit ODIS und die Rückstellung der Airbag- und Hochvoltsysteme bis hin zur abschließenden Freigabe des Fahrzeugs.
 
-## Disclaimer
+## Haftungsausschluss
 
-- Dies ist nur ein Bericht meiner Erfahrung. Er kann Fehler enthalten. Jeder, der keine sachkundige Ausbildung oder Schulung besitzt, sollte keine Reparaturen am HV-System oder an E-Fahrzeugen im Allgemeinen durchführen. Handeln auf eigene Gefahr. <!-- Hier besserer Rechtsschutz -->
-- Alle Bilder wurden mittels KI überarbeitet, damit sie besser lesbar sind. Es fand keine Änderung des groben Inhalts statt.
+- Bei diesem Dokument handelt es sich um einen Erfahrungsbericht, der Fehler enthalten kann. Personen ohne entsprechende Sachkunde, Ausbildung oder Schulung wird dringend davon abgeraten, Arbeiten am Hochvoltsystem oder an Elektrofahrzeugen im Allgemeinen durchzuführen. Sämtliche Handlungen erfolgen auf eigene Gefahr. <!-- Hier besserer Rechtsschutz -->
+- Sämtliche Abbildungen wurden mittels Künstlicher Intelligenz nachbearbeitet, um deren Lesbarkeit zu verbessern. Eine inhaltliche Veränderung fand dabei nicht statt.
 
 ## Audi E-Tron GT / Porsche Taycan
 
-Beide Modelle stehen auf der J1-Plattform, die von Porsche entwickelt wurde. Falls ihr Bauteile für euer Projekt benötigt: Viele Teile sind zwischen den Modellen austauschbar. (Hier kommt noch mehr)
+Beide Modelle basieren auf der J1-Plattform, die von Porsche entwickelt wurde. Für entsprechende Projekte ist zu beachten, dass eine Vielzahl von Bauteilen zwischen den Modellen austauschbar ist. (Wird ergänzt)
 
 ## Bestandsaufnahme
 
-Kurz zu meinem Fahrzeug: Es handelt sich um einen Audi E-Tron GT, Baujahr 2022. Das Fahrzeug hatte einen rechtsseitigen Frontalcrash (was genau passiert ist, weiß ich noch nicht).
+Bei dem betroffenen Fahrzeug handelt es sich um einen Audi E-Tron GT, Baujahr 2022. Das Fahrzeug erlitt einen rechtsseitigen Frontalcrash, dessen genauer Hergang bislang nicht abschließend geklärt werden konnte.
 
-Ausgelöst wurden alle Frontairbags sowie die seitlichen Kopfairbags. Laut den technischen Daten von Audi ist dieser Crash nicht durch einen Klemme-15-Reset (Batterie abklemmen und wieder anklemmen) behebbar.
+Im Zuge des Unfalls wurden sämtliche Frontairbags sowie die seitlichen Kopfairbags ausgelöst. Gemäß den technischen Vorgaben von Audi lässt sich dieser Schaden nicht durch einen Klemme-15-Reset (Abklemmen und erneutes Anklemmen der Batterie) beheben.
 
-Beschädigt war somit:
+Folgende Komponenten waren in der Folge beschädigt:
 - die gesamte rechte Fahrzeugfront
 - der Laderegler
 - die Hochvoltheizung
 - der Scheinwerfer
-- usw.
+- weitere, hier nicht im Detail aufgeführte Bauteile
 
 ## HV-Reset
 
-Kurz zum Aufbau des Schaltkastens der Hochvoltbatterie SX6 inklusive Zünder für Hochvoltbatterieunterbrechung N563: Darin befinden sich **keine pyrotechnischen Sicherungen**. In manchen Foren im Internet wird das Gegenteil behauptet, dies ist jedoch nicht richtig.
+Im Folgenden wird kurz der Aufbau des Schaltkastens der Hochvoltbatterie SX6 inklusive des Zünders für die Hochvoltbatterieunterbrechung N563 erläutert. Entgegen anderslautender Behauptungen in diversen Internetforen befinden sich darin **keine pyrotechnischen Sicherungen**.
 
-> [!TIP]
-> Anders als beim Audi E-Tron 55, Q8 und Q4: Diese besitzen eine pyrotechnische Sicherung, die bei einem Crash ausgelöst werden kann.
+> Im Unterschied dazu verfügen der Audi E-Tron 55, Q8 und Q4 über eine pyrotechnische Sicherung, die im Crashfall ausgelöst werden kann.
 
 ![image alt](https://github.com/Marco-Polo20/Audi-E-Tron-GT-HV-Reset/blob/main/HV-Crash-N563.png)
 
-Im SX6 befinden sich stattdessen 2 Schütze (große Relais) und 2 Sicherungen (die stark an NH-Sicherungen erinnern) – eine für die positive und eine für die negative Seite.
+Im SX6 befinden sich stattdessen zwei Schütze (Relais größerer Bauart) sowie zwei Sicherungen, die in ihrer Bauform stark an NH-Sicherungen erinnern – jeweils eine für die positive sowie die negative Seite.
 
 ![image alt]() <!-- Hier Bild aus Video vom Inneren der SX6 -->
 
-Es kann sein, dass bei einem Crash mit einem Körperschluss des HV-Systems diese Sicherungen auslösen. Sollte dies der Fall sein, sollten beide Schütze und beide Sicherungen getauscht werden – unabhängig davon, ob sie aktuell defekt sind oder nicht (wenn sie es jetzt noch nicht sind, werden sie es bald sein).
+Im Falle eines Unfalls mit Körperschluss des Hochvoltsystems besteht die Möglichkeit, dass diese Sicherungen auslösen. Sollte dies zutreffen, wird empfohlen, beide Schütze sowie beide Sicherungen zu ersetzen – unabhängig vom jeweils festgestellten Zustand, da ein Ausfall in absehbarer Zeit zu erwarten ist.
 
 ```mermaid
 flowchart TD
     A[Crash mit Körperschluss im HV-System] --> B{Schütze / Sicherungen ausgelöst?}
     B -->|Ja| C[Beide Schütze tauschen]
     B -->|Ja| D[Beide Sicherungen tauschen]
-    C --> E[SX6 wieder einsatzbereit]
+    C --> E[SX6 einbaubar]
     D --> E
 ```
 
-### 1. Benötigte Werkzeuge
+### 1. Erforderliche Werkzeuge und Ausrüstung
 
 - Messgerät
-- 1000V-Handschuhe
-- ODIS Service V.25.0.1 oder neuer (bei älteren Versionen kann es sein, dass manche Fehlercodes nicht richtig interpretiert werden – dann erscheint z. B. "P00001 Entwicklungscode 1" o. Ä.)
-  - **keine Internetverbindung**
-  - VX-Diag Passthrough-Gerät J.... (XXX)
+- 1000-V-Schutzhandschuhe
+- ODIS Service, Version 25.0.1 oder höher (bei älteren Versionen besteht die Möglichkeit, dass bestimmte Fehlercodes nicht korrekt interpretiert werden – es erscheint dann beispielsweise eine Meldung wie "P00001 Entwicklungscode 1")
+  - **ohne Internetverbindung**
+  - VX-Diag-Passthrough-Gerät J.... (XXX)
 - Werkzeugkasten
 
-**Interessantes**
-- Woher Dokumentation?
+**Weiterführende Hinweise**
+- Herkunft der zugrunde liegenden Dokumentation (noch zu ergänzen)
 
-### 2. Fehler im Airbag-Steuergerät beheben
+### 2. Behebung der Fehler im Airbag-Steuergerät
 
-Das Steuergerät 0015 Airbag darf keine statischen Fehler mehr enthalten. Der Crash-Reset in diesem Steuergerät kann nur mit einer ODIS-Online-Version erfolgen, oder der Service wird bei einschlägigen Anbietern im Internet erworben (~120 €).
+Das Steuergerät 0015 Airbag darf keine statischen Fehler mehr aufweisen. Der Crash-Reset dieses Steuergeräts kann ausschließlich über eine ODIS-Online-Version vorgenommen werden, alternativ kann der entsprechende Service bei einschlägigen Anbietern im Internet erworben werden (~120 €).
 
 ![image alt](https://github.com/Marco-Polo20/Audi-E-Tron-GT-HV-Reset/blob/main/Airbagsteuergerät.JPG)
 
-Alle anderen Fehler, die mit den nicht mehr funktionsfähigen Airbags und Sicherheitsgurten zusammenhängen, können mit einer Offline-Version von ODIS zurückgesetzt werden.
+Sämtliche übrigen Fehler, die im Zusammenhang mit den nicht mehr funktionsfähigen Airbags und Sicherheitsgurten stehen, können mit einer Offline-Version von ODIS zurückgesetzt werden.
 
-Die Sicherheitsgurte müssen über die Grundeinstellung im Menü "Geführte Funktionen" neu angelernt werden. Danach sind diese Fehler passiv und können gelöscht werden.
+Die Sicherheitsgurte müssen über die Grundeinstellung im Menü der geführten Funktionen neu angelernt werden. Im Anschluss werden die entsprechenden Fehler als passiv geführt und können gelöscht werden.
 
-- 0015 Airbag → Geführte Funktionen → Grundeinstellung Sicherheitsgurt Li, Re usw.
+- 0015 Airbag → Geführte Funktionen → Grundeinstellung Sicherheitsgurt links, rechts usw.
 
 ![image alt](https://github.com/Marco-Polo20/Audi-E-Tron-GT-HV-Reset/blob/main/Airbagfehler_Uebersicht.png)
 
-Alle anderen Airbag-Fehler wechseln von Aktiv/Statisch zu Passiv, sobald die Airbags durch neue ersetzt sowie die Sensoren bzw. Sensorleitungen repariert wurden. Danach können alle Fehler gelöscht werden.
+Sämtliche weiteren Airbag-Fehler wechseln vom Status Aktiv/Statisch zu Passiv, sobald die betroffenen Airbags durch neue ersetzt sowie die zugehörigen Sensoren beziehungsweise Sensorleitungen instand gesetzt wurden. Anschließend können sämtliche Fehler gelöscht werden.
 
-### 3. Klassifizierung des HV-Systems
+### 3. Klassifizierung des Hochvoltsystems
 
-Nachdem das Hochvoltsystem von einem Techniker mit der nötigen Freigabe geprüft wurde, kann das HV-System klassifiziert werden:
+Nachdem das Hochvoltsystem durch einen entsprechend qualifizierten und berechtigten Techniker geprüft wurde, kann die Klassifizierung des Hochvoltsystems vorgenommen werden:
 
 - Sonderfunktionen → Klassifizierung des Hochvoltsystems
 
-Sollte der ODIS-Tester hier die Zellspannungen der einzelnen Module nicht lesen können, ist die ODIS-Version zu alt – die benötigten Daten fehlen dann in der Datenbank.
+Sofern der ODIS-Tester an dieser Stelle nicht in der Lage ist, die Zellspannungen der einzelnen Module auszulesen, deutet dies auf eine veraltete ODIS-Version hin, da die erforderlichen Daten in diesem Fall nicht in der Datenbank hinterlegt sind.
 
 ![image alt](https://github.com/Marco-Polo20/Audi-E-Tron-GT-HV-Reset/blob/main/fehler_flasche_Version_Cell_Voltagesum.png)
 
-Nachdem ODIS auf die neueste Version aktualisiert wurde (Version ≥ 25.0.1), sollte die Klassifizierung erfolgreich abgeschlossen werden.
+Nach Aktualisierung von ODIS auf die jeweils aktuelle Version (≥ 25.0.1) sollte sich die Klassifizierung erfolgreich abschließen lassen.
 
-### 4. Initialisierung des HV-Systems
+### 4. Initialisierung des Hochvoltsystems
 
 <!-- War das wirklich der 3. Punkt? -->
 
-Danach kann versucht werden, das HV-System zu initialisieren – so, wie es auch gemacht wird, wenn das Fahrzeug gewartet oder Komponenten ausgetauscht wurden.
+Im Anschluss kann die Initialisierung des Hochvoltsystems vorgenommen werden – analog zum Vorgehen bei Wartungsarbeiten oder dem Austausch von Komponenten.
 
-Erscheint dabei der Fehler, dass das Steuergerät 008C Batteriemanagement/Hybrid Battery Energy Management J840 das Hochfahren blockiert, müssen die folgenden Spannungswerte ausgelesen und der Fehlerspeicher des Moduls J840 erneut ausgelesen werden.
+Tritt dabei der Fehler auf, dass das Steuergerät 008C Batteriemanagment/ Hybrid Battery Energy Managment J840 das Hochfahren des Systems blockiert, sind die nachfolgend dargestellten Spannungswerte zu sehen. 
+
+Der Fehlerspeicher des Moduls J840 sollte nun erneut ausgelesen werden.
 
 ![image alt](https://github.com/Marco-Polo20/Audi-E-Tron-GT-HV-Reset/blob/main/Spannungen_vor_reset_bei_inbetreibnahme.jpg)
 
-Im 008C sollten nun folgende Fehler hinterlegt sein:
+Im Steuergerät 008C sollten zu diesem Zeitpunkt folgende Fehler hinterlegt sein:
 
 ![image alt](https://github.com/Marco-Polo20/Audi-E-Tron-GT-HV-Reset/blob/main/008C_Alle_vor_RESET.png)
 
-### 5. Grundeinstellung des HV-Systems
+### 5. Grundeinstellung des Hochvoltsystems
 
 <!-- Fehlercode thematisieren (HV-Kontaktor defekt o. Ä., inkl. Bild) -->
 
-Es kann vorkommen, dass unter den Fehlern aus Punkt 4 im 008C "Steuergerät defekt" oder Ähnliches steht. Das scheint daran zu liegen, dass die Wartezeit für das Vorladen der Hochvoltkontakte laut Steuergerät zu lange gedauert hat, wodurch ein Defekt interpretiert wird.
+Es kann vorkommen, dass unter den in Punkt 4 genannten Fehlern im 008C die Meldung "Steuergerät defekt" oder eine vergleichbare Meldung angezeigt wird. Dies ist vermutlich darauf zurückzuführen, dass die Wartezeit für das Vorladen der Hochvoltkontakte aus Sicht des Steuergeräts zu lange angedauert und dieses daraufhin einen Defekt interpretiert hat.
 
 > [!TIP]
-> Die Vorladekontakte laden die Kontakte mit einem geringeren Strom über einen Widerstand vor, damit der Einschaltlichtbogen bzw. der Einschaltstrom nicht zu hoch ist. Dieser könnte durch einen zu hohen Strom sonst Bauteile beschädigen.
+> Über die Vorladekontakte werden die Kontakte mit reduziertem Strom über einen Widerstand vorgeladen, damit beim Einschalten weder ein zu hoher Einschaltlichtbogen noch ein zu hoher Einschaltstrom entsteht. Andernfalls könnten Bauteile durch den hohen Strom Schaden nehmen.
 
-Andere Fehler wie "P0ADD00 Ansteuerung des Minuskontakt der Hybrid-/Hochvoltbatterie elektrischer Fehler (00101111 aktiv/statisch)" sind statisch, da die Crash-Abschaltung des HV-Systems in der Batterie (im SX6) noch aktiv ist.
+Andere Fehler wie "P0ADD00 Ansteuerung des Minuskontakt der Hybrid-/Hochvoltbatterie elektrischer Fehler (00101111 aktiv/statisch)" sind statischer Natur, da die Crash-Abschaltung des Hochvoltsystems innerhalb der Batterie (im SX6) weiterhin aktiv ist.
 
-Dies kann behoben werden, indem mittels Eigendiagnose der Crash zurückgesetzt wird.
+Diese Fehler lassen sich beheben, indem der Crash-Status mittels Eigendiagnose zurückgesetzt wird.
 
 <!-- Bild vom Eigendiagnose-Button und -Tab -->
 
 ```mermaid
 flowchart TD
     A["Eigendiagnose in ODIS"] --> B[0019 Gateway]
-    B -->|Ausklappen| C[008C Batteriemanagement / Hybrid Battery Energy Management J840]
+    B -->|Ausklappen| C[008C Batteriemanagment/ Hybrid Battery Energy Managment J840]
     C -->|Rechtsklick| D[Grundeinstellung XXX]
     D --> E[Crash_Reset]
     E -->|Logincode 20103 eingeben| F[Programm folgen]
     F --> G[ENDE]
 ```
 
-(XXX) (der Name ist vermutlich falsch, wird nochmal geprüft)
+(XXX) (die Bezeichnung wird vermutlich nicht korrekt wiedergegeben und noch einmal überprüft)
 
-Danach einen Zündwechsel durchführen – beim Wiedereinschalten sollte ein lautes Schützschalten zu hören sein. Das Fahrzeug kann anschließend in D oder R geschaltet werden und fährt.
+Im Anschluss ist ein Zündwechsel durchzuführen. Beim Wiedereinschalten ist üblicherweise ein deutlich hörbares Schaltgeräusch der Schütze wahrzunehmen. Das Fahrzeug kann anschließend in die Fahrstufe D oder R geschaltet werden und ist fahrbereit.
 
 ![image alt]() <!-- Bild ODIS-Connector-Fehler -->
 
 <!-- Technische Erläuterungen zum Vorladewiderstand und den Schützen, Bezug zu oben -->
-
-Zu guter Letzt muss via Eigendiagnose der Crash-Wert im HV-System zurückgesetzt werden. Dazu: Eigendiagnose → HV-Hybridmanagement 008C Batteriemanagement/Hybrid Battery Energy Management J840.
 
 Login-Code: 20103
