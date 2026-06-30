@@ -131,6 +131,7 @@ flowchart TD
 (XXX) (die Bezeichnung wird vermutlich nicht korrekt wiedergegeben und noch einmal überprüft)
 
 Im Anschluss ist ein Zündwechsel durchzuführen. Beim Wiedereinschalten ist üblicherweise ein deutlich hörbares Schaltgeräusch der Schütze wahrzunehmen. Das Fahrzeug kann anschließend in die Fahrstufe D oder R geschaltet werden und ist fahrbereit.
+**Es kann nötig sein den Schritt 4 nochmals durchzuführen.**
 
 ![image alt]() <!-- Bild ODIS-Connector-Fehler -->
 
