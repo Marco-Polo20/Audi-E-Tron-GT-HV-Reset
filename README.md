@@ -1,6 +1,6 @@
 # Audi E-Tron GT HV Reset
 
-In diesem Repository sind die Arbeitsschritte dokumentiert, die erforderlich waren, um den betroffenen Audi E-Tron GT nach einem Unfall wieder vollständig freizuschalten und in Betrieb zu nehmen. Der Bogen spannt sich von der initialen Fehlerdiagnose über die Arbeit mit ODIS und die Rückstellung der Airbag- und Hochvoltsysteme bis hin zur abschließenden Freigabe des Fahrzeugs.
+In diesem Repository sind die Arbeitsschritte dokumentiert, die erforderlich waren, um den betroffenen Audi E-Tron GT nach einem Unfall wieder vollständig freizuschalten und in Betrieb zu nehmen. Thematisiert werden die initiale Fehlerdiagnose über die Arbeit mit ODIS und die Rückstellung der Airbag- und Hochvoltsysteme bis hin zur abschließenden Freigabe des Fahrzeugs.
 
 ## Haftungsausschluss
 
@@ -9,20 +9,19 @@ In diesem Repository sind die Arbeitsschritte dokumentiert, die erforderlich war
 
 ## Audi E-Tron GT / Porsche Taycan
 
-Beide Modelle basieren auf der J1-Plattform, die von Porsche entwickelt wurde. Für entsprechende Projekte ist zu beachten, dass eine Vielzahl von Bauteilen zwischen den Modellen austauschbar ist. (Wird ergänzt)
+Beide Modelle basieren auf der J1-Plattform, die von Porsche entwickelt wurde. Für entsprechende Projekte ist zu beachten, dass eine Vielzahl von Bauteilen zwischen den Modellen austauschbar sind. (Wird ergänzt)
 
 ## Bestandsaufnahme
 
 Bei dem betroffenen Fahrzeug handelt es sich um einen Audi E-Tron GT, Baujahr 2022. Das Fahrzeug erlitt einen rechtsseitigen Frontalcrash, dessen genauer Hergang bislang nicht abschließend geklärt werden konnte.
 
-Im Zuge des Unfalls wurden sämtliche Frontairbags sowie die seitlichen Kopfairbags ausgelöst. Gemäß den technischen Vorgaben von Audi lässt sich dieser Schaden nicht durch einen Klemme-15-Reset (Abklemmen und erneutes Anklemmen der Batterie) beheben.
+Im Zuge des Unfalls wurden sämtliche Frontairbags sowie die seitlichen Kopfairbags ausgelöst. Gemäß den technischen Vorgaben von Audi lässt sich bei diesem Schaden die Fahrbereitschaft nicht durch einen Klemme-15-Reset (Abklemmen und erneutes Anklemmen der Batterie) herstellen.
 
 Folgende Komponenten waren in der Folge beschädigt:
 - die gesamte rechte Fahrzeugfront
 - der Laderegler
 - die Hochvoltheizung
 - der Scheinwerfer
-- weitere, hier nicht im Detail aufgeführte Bauteile
 
 ## HV-Reset
 
@@ -36,7 +35,9 @@ Im SX6 befinden sich stattdessen zwei Schütze (Relais größerer Bauart) sowie 
 
 ![image alt]() <!-- Hier Bild aus Video vom Inneren der SX6 -->
 
-Im Falle eines Unfalls mit Körperschluss des Hochvoltsystems besteht die Möglichkeit, dass diese Sicherungen auslösen. Sollte dies zutreffen, wird empfohlen, beide Schütze sowie beide Sicherungen zu ersetzen – unabhängig vom jeweils festgestellten Zustand, da ein Ausfall in absehbarer Zeit zu erwarten ist.
+> [!TIP]
+>- Im Falle eines Unfalls mit Körperschluss des Hochvoltsystems besteht die Möglichkeit, dass diese Sicherungen auslösen. Sollte dies zutreffen, wird empfohlen, beide Schütze sowie beide Sicherungen zu ersetzen – unabhängig vom jeweils festgestellten Zustand, da ein Ausfall in absehbarer Zeit zu erwarten ist.
+>- zudem ist es auch möglich das diese Sicheurng auslöst wenn ein anderer Fehlerfall auftritt, z.B. Wassereintritt in den Fahrmotor.
 
 ```mermaid
 flowchart TD
@@ -53,11 +54,11 @@ flowchart TD
 - 1000-V-Schutzhandschuhe
 - ODIS Service, Version 25.0.1 oder höher (bei älteren Versionen besteht die Möglichkeit, dass bestimmte Fehlercodes nicht korrekt interpretiert werden – es erscheint dann beispielsweise eine Meldung wie "P00001 Entwicklungscode 1")
   - **ohne Internetverbindung**
-  - VX-Diag-Passthrough-Gerät J.... (XXX)
+  - VX-Diag-Passthrough-Gerät VXDIAG VCX SE 6154 for Audi (Angezeigt wird es in ODIS als J.... (XXX)
 - Werkzeugkasten
 
 **Weiterführende Hinweise**
-- Herkunft der zugrunde liegenden Dokumentation (noch zu ergänzen)
+- Leider wurde am 18.12.2025 die erWin Plattform für Privatkunden geschlossen, über diese Seite konnte man sich alle benötigten Infos wie Reparatur-Anleitungen und Schaltpläne zu dem jeweiligen Fahrzeug downloaden.
 
 ### 2. Behebung der Fehler im Airbag-Steuergerät
 
